@@ -1,0 +1,8 @@
+mafredri/zsh-async
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+#zsh-users/zsh-syntax-highlighting
+zdharma/fast-syntax-highlighting
+zsh-users/zsh-history-substring-search
+romkatv/powerlevel10k
+#sindresorhus/pure
