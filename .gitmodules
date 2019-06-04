@@ -1,0 +1,3 @@
+[submodule "fasder"]
+	path = fasder
+	url = https://github.com/clarity20/fasder

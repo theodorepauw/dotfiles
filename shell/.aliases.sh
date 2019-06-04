@@ -5,6 +5,7 @@ USERPATH="$HOME/.local/share/bin"
 EDITOR="nvim"
 
 alias ai="antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
+alias aos="audio_output_switch"
 alias cfa="$EDITOR ~/.aliases.sh"
 alias cfal="$EDITOR ~/.config/alacritty/alacritty.yml"
 alias cfb="$EDITOR ~/.config/bspwm/bspwmrc"
@@ -46,27 +47,19 @@ alias vim="$EDITOR"
 alias ls="$LS_COMMAND"
 alias mkdir='mkdir -p'
 
-## FASD aliases
-#alias c='f -e cat'
-#alias e='f -e .'
-#alias m='f -e mpv' # quick opening files with mplayer
-#alias o='a -e xdg-open' # quick opening files with xdg-open
-#alias v="f -e $EDITOR" # quick opening files with vim
-#alias l='f -e less'
-
 # FASDER ALIASES
-#alias a='fasder -a'        # any
-#alias b='fasder -e bat'
-#alias d='fasder -d'        # directory
+alias a='fasder -a'        # any
+alias b='fasder -e bat'
+alias d='fasder -d'        # directory
 #alias e='fasder -sid -e $EDITOR'
-#alias f='fasder -f'        # file
-#alias j='fasder_cd -d'     # cd, same functionality as j in autojump
-#alias ji='fasder_cd -d -i' # cd with interactive selection
-#alias l='fasder -sid -e $LS_COMMAND'
-#alias o='a -e xdg-open'
-#alias s='fasder -si'       # show / search / select
+alias f='fasder -f'        # file
+alias j='fasder_cd -d'     # cd, same functionality as j in autojump
+alias ji='fasder_cd -d -i' # cd with interactive selection
+alias l='fasder -sid -e $LS_COMMAND'
+alias o='a -e xdg-open'
+alias s='fasder -si'       # show / search / select
 #alias sd='fasder -sid'     # interactive directory selection
-#alias sf='fasder -sif'     # interactive file selection
+alias sf='fasder -sif'     # interactive file selection
 #alias v="f -e $EDITOR"
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
@@ -112,9 +105,14 @@ decode() {
 	echo "$1" | base64 -d | xclip -selection clipboard ; xclip -selection clipboard -o ; echo
 }
 
+#t() {
+#	current=`themey`
+#	ls $COLORDIR | fzf --preview 'themey {} && panes'
+#}
+
+# theme selection using wal
 t() {
-	current=`themey`
-	ls $COLORDIR | fzf --preview 'themey {} && panes'
+	(cd "/usr/local/lib/python3.7/dist-packages/pywal/colorschemes/dark" && fd .) | fzf --preview 'wal -q --theme `echo {} | sed 's/.json//'` && panes' > /dev/null
 }
 
 alacritty.setup() {

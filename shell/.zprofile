@@ -1,6 +1,7 @@
 # vim:syntax=zsh
 # vim:filetype=zsh
 
+#cat "$HOME/.cache/wal/sequences"
 export DOTFILES=$HOME/.julia
 
 unsetopt BEEP
@@ -30,6 +31,13 @@ path=(
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
+
+#if type "themey" &> /dev/null; then
+#	{
+#		themey `themey`
+#	}
+#fi
+
 #
 # Less
 #
@@ -84,11 +92,6 @@ else
 	export LS_COMMAND="ls --color=auto"
 fi
 
-if type "themey" &> /dev/null; then
-	{
-		themey `themey`
-	}
-fi
 
 CGO_CXXFLAGS_ALLOW=".*" 
 CGO_LDFLAGS_ALLOW=".*" 
