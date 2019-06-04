@@ -25,7 +25,6 @@ alias clock="tty-clock -c"
 alias comptonr="killall -9 compton && compton --config ~/.config/compton.conf -b"
 
 alias edit="$EDTIOR"
-alias fd="fdfind"
 alias fs="fc-list : family | fzf"
 #alias fs="fc-list : family | sk"
 alias g.="git add ."

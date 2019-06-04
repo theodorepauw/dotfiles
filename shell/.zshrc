@@ -6,12 +6,15 @@ typeset -U PATH
 
 export SUDO_PROMPT="$(tput setaf 4)[sudo]$(tput setaf 3) password for %p:$(tput setaf 7) "
 
-
 source $HOME/.aliases.sh
 source $HOME/.keybindings.zsh
 source $HOME/.zsh_plugins.sh
 source $HOME/.purepower
 source $HOME/.zsh-interactive-cd.plugin.zsh
+
+if command -v pazi &>/dev/null; then
+  eval "$(pazi init zsh)" # or 'bash'
+fi
 
 autoload -Uz compinit
 setopt EXTENDEDGLOB
@@ -24,8 +27,5 @@ setopt EXTENDEDGLOB
   unsetopt EXTENDEDGLOB
   compinit -C
 
-if command -v pazi &>/dev/null; then
-  eval "$(pazi init zsh)" # or 'bash'
-fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

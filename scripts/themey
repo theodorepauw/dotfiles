@@ -13,7 +13,7 @@ if [ -n "$1" ]; then
 
 		echo $theme >> $filepath
 		
-		echo -e "\e[31m\e[1mYour \e[32mtheme \e[33mis \e[34mnow \e[35mset \e[36mto \e[5m\e[39m$theme"
+		echo -e "\e[31m\e[1mYour \e[32mtheme \e[33mis \e[34mnow \e[35mset \e[36mto \e[39m$theme"
 	elif ! [ -e "$colordir/$1" ]; then
 		echo -e "Are you sure you meant to type \e[35m$1?"
 	fi

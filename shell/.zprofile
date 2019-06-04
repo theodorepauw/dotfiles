@@ -2,7 +2,6 @@
 # vim:filetype=zsh
 
 export DOTFILES=$HOME/.julia
-alias fd=fdfind
 
 unsetopt BEEP
 
@@ -50,7 +49,14 @@ export POLYBARCONFIGDIR=$HOME/.config/polybar
 export COLORDIR="$DOTFILES/colors"
 
 #export FZF_COMPLETION_TRIGGER='**'
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+if type "fd" &> /dev/null ; then
+	find_cmd="fd"
+elif type "fdfind" &> /dev/null ; then
+	find_cmd="fdfind"
+else
+	find_cmd="find"
+fi
+export FZF_DEFAULT_COMMAND="$find_cmd --type f --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='
 --color fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229
@@ -62,12 +68,12 @@ export FZF_DEFAULT_OPTS='
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
+  "$find_cmd" --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
+  "$find_cmd" --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 if type "lsd" &> /dev/null ; then
