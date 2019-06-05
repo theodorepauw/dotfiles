@@ -1,7 +1,6 @@
 # vim:syntax=zsh
 # vim:filetype=zsh
 
-#cat "$HOME/.cache/wal/sequences"
 export DOTFILES=$HOME/.julia
 
 unsetopt BEEP

@@ -166,3 +166,6 @@ man() {
     LESS_TERMCAP_us=$'\e[1;32m' \
       man "$@"
 }
+
+# fasder tries to claim 'sd'
+unalias sd
