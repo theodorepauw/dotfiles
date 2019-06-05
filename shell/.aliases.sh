@@ -1,7 +1,7 @@
 # vim:syntax=sh
 # vim:filetype=sh
 
-USERPATH="$HOME/.local/share/bin"
+USERPATH="$HOME/.local/bin"
 EDITOR="nvim"
 
 alias ai="antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
@@ -147,7 +147,7 @@ kitty.install() {
 sl="$USERPATH/kitty"
 if ! [ -e "$sl" ]; then 
 	kitty.update
-	ln -s ~/.local/kitty.app/bin/kitty "$USERPATH"
+	ln -s -f ~/.local/kitty.app/bin/kitty "$sl"
 	# Place the kitty.desktop file somewhere it can be found by the OS
 	cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
 	# Update the path to the kitty icon in the kitty.desktop file
@@ -169,3 +169,6 @@ man() {
 
 # fasder tries to claim 'sd'
 unalias sd
+if type "sd" &> /dev/null ; then
+	alias sed=sd
+fi
