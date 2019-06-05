@@ -11,7 +11,6 @@ export SUDO_PROMPT="$(tput setaf 4)[sudo]$(tput setaf 3) password for %p:$(tput 
 eval "$(fasder --init auto)"
 
 source $HOME/.aliases.sh
-source $HOME/.keybindings.zsh
 source $HOME/.zsh_plugins.sh
 source $HOME/.purepower
 source $HOME/.zsh-interactive-cd.plugin.zsh
