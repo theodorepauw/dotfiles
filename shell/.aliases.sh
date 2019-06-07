@@ -51,7 +51,7 @@ alias mkdir='mkdir -p'
 alias a='fasder -a'        # any
 alias b='fasder -e bat'
 alias d='fasder -d'        # directory
-#alias e='fasder -sid -e $EDITOR'
+alias e='fasder -sid -e $EDITOR'
 alias f='fasder -f'        # file
 alias j='fasder_cd -d'     # cd, same functionality as j in autojump
 alias ji='fasder_cd -d -i' # cd with interactive selection
@@ -122,15 +122,25 @@ alacritty.setup() {
 	sudo update-desktop-database
 }
 
+
+# Attempt at making kitty's image preview work
+#if file --mime-type {} | rg -q 'image'; then
+#	kitty +kitten icat {}
+#else
+#	echo {} is a binary file
+#fi
 fzfp() {
-fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
-	 echo {} is a binary file ||
+fzf --preview '
+if file --mime-encoding {} | rg -q 'binary' ; then
+		echo {} is a binary file
+else
 	 (bat --style=numbers --color=always {} ||
 	  highlight -O ansi -l {} ||
 	  coderay {} ||
 	  rougify {} ||
-	  cat {}) 2> /dev/null | head -500'
-  }
+	  cat {}) 2> /dev/null | head -500
+fi'
+}
 
 kitty.update() {
 	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
@@ -169,6 +179,6 @@ man() {
 
 # fasder tries to claim 'sd'
 unalias sd
-if type "sd" &> /dev/null ; then
-	alias sed=sd
-fi
+#if type "sd" &> /dev/null ; then
+#	alias sed=sd
+#fi

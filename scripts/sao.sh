@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-# vim:syntax=sh
-# vim:filetype=sh
+#!/bin/bash
 
 IFS=$'\n' ## for effective cutting
 

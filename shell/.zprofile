@@ -55,7 +55,7 @@ export WALLPAPERDIR="$HOME/Pictures/wallpapers"
 export POLYBARCONFIGDIR=$HOME/.config/polybar
 export COLORDIR="$DOTFILES/colors"
 
-#export FZF_COMPLETION_TRIGGER='**'
+export FZF_COMPLETION_TRIGGER=',,'
 if type "fd" &> /dev/null ; then
 	find_cmd="fd"
 elif type "fdfind" &> /dev/null ; then
