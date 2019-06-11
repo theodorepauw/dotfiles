@@ -26,6 +26,7 @@ path=(
   /usr/local/{bin,sbin}
   $HOME/.cargo/bin
   $DOTFILES/scripts
+  "$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 )
 
 # Ensure path arrays do not contain duplicates.

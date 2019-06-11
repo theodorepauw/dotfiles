@@ -2,17 +2,19 @@
 # vim:syntax=zsh
 # vim:filetype=zsh
 
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 (cat "$HOME/.cache/wal/sequences" &)
 
 typeset -U PATH
-
-export SUDO_PROMPT="$(tput setaf 4)[sudo]$(tput setaf 3) password for %p:$(tput setaf 7) "
 
 eval "$(fasder --init auto)"
 
 source $HOME/.aliases.sh
 source $HOME/.zsh_plugins.sh
-source $HOME/.purepower
+#source $HOME/.purepower
+#SILVER=(status:black:white dir:blue:black git:green:black cmdtime:magenta:black)
+#export SILVER_SHELL=$0 # bash, zsh, or fish
+#eval "$(silver init)"
 source $HOME/.zsh-interactive-cd.plugin.zsh
 
 autoload -Uz compinit
@@ -27,3 +29,4 @@ setopt EXTENDEDGLOB
   compinit -C
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

@@ -29,6 +29,11 @@ alias fs="fc-list : family | fzf"
 #alias fs="fc-list : family | sk"
 alias g.="git add ."
 gh="https://github.com"
+creategitrepo(){
+	if [ -n "$1" ]; then
+		curl -u 'theodorepauw' https://api.github.com/user/repos -d '{"n":"$1"}'
+	fi
+}
 alias icat="kitty +kitten icat"
 
 alias mnt="udisksctl mount -b /dev/sda5"

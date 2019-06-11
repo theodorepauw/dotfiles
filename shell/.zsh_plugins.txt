@@ -5,5 +5,5 @@ zsh-users/zsh-completions
 zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
 #romkatv/powerlevel10k
-denysdovhan/spaceship-prompt
+#denysdovhan/spaceship-prompt
 #sindresorhus/pure
