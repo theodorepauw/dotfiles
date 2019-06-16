@@ -1,3 +1,6 @@
 [submodule "fasder"]
 	path = fasder
 	url = https://github.com/clarity20/fasder
+[submodule "zsh-interactive-cd"]
+	path = zsh-interactive-cd
+	url = https://github.com/changyuheng/zsh-interactive-cd

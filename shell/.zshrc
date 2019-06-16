@@ -25,8 +25,10 @@ setopt EXTENDEDGLOB
       zcompile "$dump"
     fi
   done
-  unsetopt EXTENDEDGLOB
-  compinit -C
+unsetopt EXTENDEDGLOB
+compinit -C
+
+#source "$HOME/apps/enhancd/init.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

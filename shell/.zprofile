@@ -38,6 +38,9 @@ typeset -gU cdpath fpath mailpath path
 #	}
 #fi
 
+ENHANCD_FILTER=fzy:fzf
+export ENHANCD_FILTER
+
 #
 # Less
 #
