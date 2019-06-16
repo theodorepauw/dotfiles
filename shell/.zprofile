@@ -23,7 +23,7 @@ fi
 # Set the list of directories that Zsh searches for programs.
 path=(
   $path
-  /usr/local/{bin,sbin}
+  /usr/local/{bin,bin/bin,sbin}
   $HOME/.cargo/bin
   $DOTFILES/scripts
   "$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
@@ -84,10 +84,10 @@ _fzf_compgen_dir() {
   "$find_cmd" --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-if type "lsd" &> /dev/null ; then
-	export LS_COMMAND="lsd"
-elif type "exa" &> /dev/null ; then
+if type "exa" &> /dev/null ; then
 	export LS_COMMAND="exa"
+elif type "lsd" &> /dev/null ; then
+	export LS_COMMAND="lsd"
 else
 	export LS_COMMAND="ls --color=auto"
 fi
