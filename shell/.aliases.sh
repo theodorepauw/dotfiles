@@ -117,7 +117,7 @@ decode() {
 
 # theme selection using wal
 t() {
-	(cd "/usr/local/lib/python3.7/dist-packages/pywal/colorschemes/dark" && fd .) | fzf --preview 'wal -q --theme `echo {} | sed 's/.json//'` && panes' > /dev/null
+	(cd "/usr/local/lib/python3.7/site-packages/pywal/colorschemes/dark" && fd .) | fzf --preview 'wal -q --theme `echo {} | sed 's/.json//'` && panes' > /dev/null
 }
 
 alacritty.setup() {

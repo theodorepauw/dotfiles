@@ -1,7 +1,7 @@
 # vim:syntax=zsh
 # vim:filetype=zsh
 
-export DOTFILES=$HOME/.julia
+export DOTFILES=$HOME/.dots
 
 unsetopt BEEP
 
@@ -23,6 +23,7 @@ fi
 # Set the list of directories that Zsh searches for programs.
 path=(
   $path
+  $HOME/.local/bin
   /usr/local/{bin,bin/bin,sbin}
   $HOME/.cargo/bin
   $DOTFILES/scripts
@@ -60,14 +61,18 @@ export POLYBARCONFIGDIR=$HOME/.config/polybar
 export COLORDIR="$DOTFILES/colors"
 
 export FZF_COMPLETION_TRIGGER=',,'
-if type "fd" &> /dev/null ; then
-	find_cmd="fd"
-elif type "fdfind" &> /dev/null ; then
-	find_cmd="fdfind"
+if type "rg" &> /dev/null ; then
+	export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 else
-	find_cmd="find"
+	if type "fd" &> /dev/null ; then
+		find_cmd="fd"
+	elif type "fdfind" &> /dev/null ; then
+		find_cmd="fdfind"
+	else
+		find_cmd="find"
+	fi
+	export FZF_DEFAULT_COMMAND="$find_cmd --type f --hidden --follow --exclude .git"
 fi
-export FZF_DEFAULT_COMMAND="$find_cmd --type f --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='
 --color fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229

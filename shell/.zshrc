@@ -15,7 +15,6 @@ source $HOME/.zsh_plugins.sh
 #SILVER=(status:black:white dir:blue:black git:green:black cmdtime:magenta:black)
 #export SILVER_SHELL=$0 # bash, zsh, or fish
 #eval "$(silver init)"
-source $HOME/.zsh-interactive-cd.plugin.zsh
 
 autoload -Uz compinit
 setopt EXTENDEDGLOB
@@ -29,6 +28,7 @@ unsetopt EXTENDEDGLOB
 compinit -C
 
 #source "$HOME/apps/enhancd/init.sh"
+#source $HOME/.zsh-interactive-cd.plugin.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
