@@ -224,7 +224,7 @@ set title
 set titlestring=%t
 
 " backspace over anything but EOL
-set backspace=indent,start
+"set backspace=indent,start
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•

@@ -20,6 +20,7 @@ if [[ -z "$LANG" ]]; then
     export LANGUAGE=en_US.UTF-8
 fi
 
+fpath+=~/.zfunc
 # Set the list of directories that Zsh searches for programs.
 path=(
   $path
