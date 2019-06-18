@@ -1,4 +1,4 @@
-let mapleader = "\<Space>"
+map <Space> <Leader>
 if has('vim_starting')
 	set nocompatible               " Be iMproved
 endif
@@ -20,9 +20,10 @@ Plug 'airblade/vim-rooter' " Changes Vim working directory to project root
 "Plug 'jremmen/vim-ripgrep' " Use RipGrep in Vim
 
 " Semantic language support
-"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp' " pynvim is required for nvim-yarp to work!
+Plug 'racer-rust/vim-racer'
 
 " Completion plugins
 Plug 'ncm2/ncm2-bufword'
@@ -222,6 +223,9 @@ set shortmess+=c " don't give |ins-completion-menu| messages.
 set title
 set titlestring=%t
 
+" backspace over anything but EOL
+set backspace=indent,start
+
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
 set nolist
@@ -232,6 +236,9 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 " =============================================================================
 " ; as : -> don't need to hold in shift
 nnoremap ; :
+
+" autoindent
+map <tab> =
 
 " Ctrl+c and Ctrl+j as Esc
 inoremap <C-j> <Esc>
@@ -289,6 +296,9 @@ map <C-p> :Files<CR>
 " Quick-save
 nmap <leader>w :w<CR>
 
+" Quit
+nmap <leader>q :q<CR>
+
 " Move by line
 nnoremap j gj
 nnoremap k gk
@@ -337,6 +347,11 @@ autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 " Follow Rust code style rules
 au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
 au Filetype rust set colorcolumn=100
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot

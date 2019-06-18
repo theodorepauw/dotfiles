@@ -17,20 +17,20 @@ v=$'\e[7m'
 sep=
 s=$d$f0$sep$t
 
-w=
+w=📶
 wifiname="$(iwgetid | cut -d \" -f2)"
 
-h=
+h=🛡️
 wmname="$(xprop -id $(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}') -notype -f _NET_WM_NAME 8t | grep "WM_NAME" | cut -f2 -d \")"
 
-k=
+k=🍿
 kernel="$(uname -r | cut -d '-' -f1)"
 
-r=
+r=🖥️
 resolution="$(xwininfo -root | grep geometry | awk '{print $2}' | cut -d + -f1)"
 
-sh=
-shell=$(basename $SHELL)
+sh=🐚
+shell=`echo $SHELL | rg '.*/(\w+)$' -r '$1'`
 
 # (\ /)
 # ( · ·)
