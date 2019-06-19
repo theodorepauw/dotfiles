@@ -29,6 +29,9 @@ Plug 'racer-rust/vim-racer'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 
+" VIM improvements
+Plug 'tpope/vim-surround' " for better parentheses, etc.
+
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
     if has('nvim')
@@ -56,9 +59,6 @@ end
 " deal with colors
 if !has('gui_running')
 	set t_Co=256
-endif
-if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
-	set termguicolors
 endif
 
 " Colors
@@ -127,6 +127,7 @@ inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"
 " =============================================================================
 filetype plugin indent on
 set autoindent 
+set smartindent
 set timeoutlen=300 " https://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8 " only display files as utf-8
 set fileencoding=utf-8 " re-encode file as utf-8 if not already the case
@@ -299,6 +300,12 @@ nmap <leader>w :w<CR>
 " Quit
 nmap <leader>q :q<CR>
 
+" Quick-save & Quit
+nmap <leader>wq :wq<CR>
+
+" Quick-save & Quit
+nmap <leader>x :x<CR>
+
 " Move by line
 nnoremap j gj
 nnoremap k gk
@@ -323,6 +330,16 @@ au User Ncm2Plugin call ncm2#register_source({
         \ 'complete_pattern': ':\s*',
         \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
         \ })
+
+" trying out a work-around for better parentheses
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 
 " =============================================================================
 " # Autocommands

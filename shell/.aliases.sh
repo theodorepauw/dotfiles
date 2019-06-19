@@ -47,6 +47,7 @@ alias q="exit"
 #alias r="ranger"
 alias rofia="rofi -show drun"
 alias sao="sao.sh"
+alias sdi="sudo dnf install"
 alias vim="$EDITOR"
 
 alias ls="$LS_COMMAND"
@@ -133,13 +134,16 @@ alacritty.setup() {
 	sudo update-desktop-database
 }
 
-
 # Attempt at making kitty's image preview work
 #if file --mime-type {} | rg -q 'image'; then
 #	kitty +kitten icat {}
 #else
 #	echo {} is a binary file
 #fi
+
+
+alias panthdark="gsettings set io.elementary.terminal.settings prefer-dark-style"
+
 fzfp() {
 fzf --preview '
 if file --mime-encoding {} | rg -q 'binary' ; then

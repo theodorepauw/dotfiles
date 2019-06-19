@@ -10,6 +10,7 @@ typeset -U PATH
 eval "$(fasder --init auto)"
 
 source $HOME/.aliases.sh
+source $HOME/.keybindings.zsh
 source $HOME/.zsh_plugins.sh
 #source $HOME/.purepower
 #SILVER=(status:black:white dir:blue:black git:green:black cmdtime:magenta:black)
