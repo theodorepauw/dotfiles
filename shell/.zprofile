@@ -29,6 +29,7 @@ path=(
   $HOME/.cargo/bin
   $DOTFILES/scripts
   "$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+  "$HOME"/apps/coding/Idea IDE Ultimate/bin/
 )
 
 # Ensure path arrays do not contain duplicates.
