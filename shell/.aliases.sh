@@ -118,12 +118,12 @@ decode() {
 
 # theme selection using wal
 td() {
-	dir='/usr/local/lib/python3.7/site-packages/pywal/colorschemes/dark'
+	dir='/usr/local/lib/python3.7/dist-packages/pywal/colorschemes/dark'
 	(cd "$dir" && fd .) | fzf --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
 }
 
 tl() {
-	dir='/usr/local/lib/python3.7/site-packages/pywal/colorschemes/light'
+	dir='/usr/local/lib/python3.7/dist-packages/pywal/colorschemes/light'
 	(cd "$dir" && fd .) | fzf --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
 }
 
@@ -193,7 +193,7 @@ man() {
 }
 
 # fasder tries to claim 'sd'
-unalias sd
+#unalias sd
 #if type "sd" &> /dev/null ; then
 #	alias sed=sd
 #fi

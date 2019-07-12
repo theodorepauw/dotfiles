@@ -22,14 +22,19 @@ fi
 
 fpath+=~/.zfunc
 # Set the list of directories that Zsh searches for programs.
+
+# Go Env
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/code/go
+
 path=(
   $path
   $HOME/.local/bin
   /usr/local/{bin,bin/bin,sbin}
   $HOME/.cargo/bin
+  $GOPATH/bin
+  $GOROOT/bin
   $DOTFILES/scripts
-  "$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
-  "$HOME"/apps/coding/Idea IDE Ultimate/bin/
 )
 
 # Ensure path arrays do not contain duplicates.
@@ -112,3 +117,4 @@ bindkey "^F" autosuggest-accept
 bindkey "^A" autosuggest-accept
 bindkey "^U" backward-kill-line
 bindkey "^Y" yank
+

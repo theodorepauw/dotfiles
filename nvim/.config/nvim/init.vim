@@ -16,6 +16,7 @@ Plug 'andymass/vim-matchup'
 " Fuzzy Finder + Integration
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install' }
 Plug 'junegunn/fzf.vim'
+Plug 'mcchrish/nnn.vim'
 Plug 'airblade/vim-rooter' " Changes Vim working directory to project root
 "Plug 'jremmen/vim-ripgrep' " Use RipGrep in Vim
 
@@ -28,9 +29,16 @@ Plug 'racer-rust/vim-racer'
 " Completion plugins
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
+"rust
+Plug 'ncm2/ncm2-racer'
+"python
+Plug 'ncm2/ncm2-jedi'
+"go
+Plug 'ncm2/ncm2-go'
 
 " VIM improvements
-Plug 'tpope/vim-surround' " for better parentheses, etc.
+"Plug 'tpope/vim-surround' " for better parentheses, etc.
+Plug 'tpope/vim-commentary'
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -45,7 +53,7 @@ endfunction
 " Syntactic language support
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'rust-lang/rust.vim'
-Plug 'cespare/vim-toml'
+""Plug 'cespare/vim-toml'
 " Plug 'sheerun/vim-polyglot'
 
 call plug#end()
@@ -120,7 +128,8 @@ set completeopt=noinsert,menuone,noselect
 " tab to select
 " and don't hijack my enter key
 inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
-inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
+""inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
+inoremap <expr> <cr> ((pumvisible())?("\<C-y>"):("\<cr>"))
 
 " =============================================================================
 " # Editor settings
@@ -334,9 +343,9 @@ au User Ncm2Plugin call ncm2#register_source({
 " trying out a work-around for better parentheses
 inoremap " ""<left>
 inoremap ' ''<left>
-inoremap ( ()<left>
+"inoremap ( ()<left>
 inoremap [ []<left>
-inoremap { {}<left>
+" inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
@@ -370,6 +379,9 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
+"python run current file
+autocmd BufWinEnter *.py nnoremap <F4> :w !python %<CR>
+
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot
 autocmd BufRead *.md set filetype=markdown
@@ -385,3 +397,14 @@ autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
 if has('nvim')
 	runtime! plugin/python_setup.vim
 endif
+
+" Disable default mappings
+let g:nnn#set_default_mappings = 0
+
+" Then set your own
+nnoremap <silent> <leader>nn :NnnPicker<CR>
+
+
+" Or override
+" Start nnn in the current file's directory
+nnoremap <leader>n :NnnPicker '%:p:h'<CR>

@@ -28,7 +28,6 @@ setopt EXTENDEDGLOB
 unsetopt EXTENDEDGLOB
 compinit -C
 
-#source "$HOME/apps/enhancd/init.sh"
 #source $HOME/.zsh-interactive-cd.plugin.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
