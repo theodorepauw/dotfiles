@@ -1,0 +1,6 @@
+# Dark theme.
+rofi.theme:		~/.cache/wal/colors-rofi-dark.rasi
+rofi.modi:		drun
+rofi.show-icons:	true
+rofi.font:		SF Pro Display 14
+rofi.scroll-method:	1

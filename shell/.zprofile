@@ -89,10 +89,10 @@ _fzf_compgen_dir() {
   "$find_cmd" --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-if type "exa" &> /dev/null ; then
-	export LS_COMMAND="exa"
-elif type "lsd" &> /dev/null ; then
+if type "lsd" &> /dev/null ; then
 	export LS_COMMAND="lsd"
+elif type "exa" &> /dev/null ; then
+	export LS_COMMAND="exa"
 else
 	export LS_COMMAND="ls --color=auto"
 fi

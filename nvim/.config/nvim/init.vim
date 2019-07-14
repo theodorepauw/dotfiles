@@ -25,6 +25,7 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.s
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp' " pynvim is required for nvim-yarp to work!
 Plug 'racer-rust/vim-racer'
+Plug 'ollykel/v-vim'
 
 " Completion plugins
 Plug 'ncm2/ncm2-bufword'
@@ -381,6 +382,8 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 "python run current file
 autocmd BufWinEnter *.py nnoremap <F4> :w !python %<CR>
+"bash run current file
+autocmd BufWinEnter *.sh nnoremap <F4> :w !. %<CR>
 
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot

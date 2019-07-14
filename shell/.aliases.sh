@@ -43,6 +43,7 @@ alias own="chmod +x "
 alias play="mpv --really-quiet"
 alias pb="sh ~/.config/polybar/launch.sh"
 alias pbr="pkill -USR1 polybar"
+alias python="python3"
 alias q="exit"
 #alias r="ranger"
 alias rofia="rofi -show drun"
@@ -91,10 +92,17 @@ fe() {
 #}
 
 # fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
-v() {
+fv() {
     [ $# -gt 0 ] && fasder -f -e ${EDITOR} "$*" && return
     local file
     file="$(fasder -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
+}
+
+tv() {
+	seriesdir=$HOME/videos/Series
+	series=`lsd -d $seriesdir/*/ | fzf`
+	echo "$seriesdir/$series"
+	gnome-mpv "$(fd . -e mkv -e avi -e mp4 $seriesdir/$series | fzf)" &> /dev/null
 }
 
 # z.lua ALIASES
