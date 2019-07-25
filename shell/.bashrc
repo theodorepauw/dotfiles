@@ -12,7 +12,7 @@ then
 fi
 export PATH
 
-source ~/.aliases.sh
+source ~/.cross-shell-plugins/aliases.plugin.sh
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=

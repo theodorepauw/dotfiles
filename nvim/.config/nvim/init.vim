@@ -14,14 +14,18 @@ Plug 'lilydjwg/colorizer'
 Plug 'andymass/vim-matchup'
 
 " Fuzzy Finder + Integration
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install' }
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'airblade/vim-rooter' " Changes Vim working directory to project root
 "Plug 'jremmen/vim-ripgrep' " Use RipGrep in Vim
 
 " Semantic language support
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp' " pynvim is required for nvim-yarp to work!
 Plug 'racer-rust/vim-racer'
@@ -221,10 +225,6 @@ augroup numbertoggle
 	autocmd BufLeave,FocusLost,InsertEnter 	 * set norelativenumber
 augroup end
 set number " Also show current absolute line
-"set diffopt+=iwhite " No whitespace in vimdiff
-" Make diffing better: https://vimways.org/2018/the-power-of-diff/
-set diffopt+=algorithm:patience
-set diffopt+=indent-heuristic
 "set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals

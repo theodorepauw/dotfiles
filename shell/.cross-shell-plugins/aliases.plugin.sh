@@ -5,54 +5,54 @@ USERPATH="$HOME/.local/bin"
 EDITOR="nvim"
 
 alias ai="antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
-alias cfa="$EDITOR ~/.aliases.sh"
+alias cfa="$EDITOR ~/.cross-shell-plugins/aliases.plugin.sh"
 alias cfal="$EDITOR ~/.config/alacritty/alacritty.yml"
 alias cfb="$EDITOR ~/.config/bspwm/bspwmrc"
 alias cfc="$EDITOR ~/.config/compton.conf"
 alias cff="$EDITOR ~/.config/fish/config.fish"
 alias cfi="$EDITOR ~/.config/i3/config"
 alias cfk="$EDITOR ~/.config/kitty/kitty.conf"
-alias cfkey="$EDITOR ~/.keybindings.sh"
+alias cfkey="$EDITOR ~/.zsh/plugins/keybindings-plugin.zsh"
 alias cfn="$EDITOR ~/.config/$EDITOR/init.vim"
 alias cfp="$EDITOR ~/.config/polybar/config"
 alias cfr="$EDITOR ~/.config/ranger/rc.conf"
-alias cfs="$EDITOR ~/.config/sxhkd/sxhkdrc"
-alias cft="$EDITOR ~/.config/termite/config"
+alias cfs="$EDITOR ~/.zsh/plugins.toml"
+alias cfst="$EDITOR ~/.config/starship.toml"
 alias cfx="$EDITOR ~/.Xresources"
 alias cfz="$EDITOR ~/.zshrc"
+alias cfzp="$EDITOR ~/.zprofile"
 
 alias clock="tty-clock -c"
 alias comptonr="killall -9 compton && compton --config ~/.config/compton.conf -b"
 
 alias edit="$EDTIOR"
-alias fs="fc-list : family | fzf"
-#alias fs="fc-list : family | sk"
+#alias fs="fc-list : family | fzf"
+alias fs="fc-list : family | sk"
 alias g.="git add ."
-gh="https://github.com"
+
 creategitrepo(){
 	if [ -n "$1" ]; then
 		curl -u 'theodorepauw' https://api.github.com/user/repos -d '{"n":"$1"}'
 	fi
 }
-alias icat="kitty +kitten icat"
 
+alias icat="kitty +kitten icat"
+alias la="ls -a"
+alias ll="ls -l"
+alias lal="ls -al"
+alias ls="$LS_COMMAND"
+alias mkdir='mkdir -p'
 alias mnt="udisksctl mount -b /dev/sda5"
 alias music="ncmpcpp -s playlist -S visualizer"
 alias n="neofetch"
 alias own="chmod +x "
 alias play="mpv --really-quiet"
-alias pb="sh ~/.config/polybar/launch.sh"
-alias pbr="pkill -USR1 polybar"
 alias python="python3"
 alias q="exit"
-#alias r="ranger"
 alias rofia="rofi -show drun"
-alias sao="sao.sh"
-alias sdi="sudo dnf install"
+alias sudo="sudo "
 alias vim="$EDITOR"
 
-alias ls="$LS_COMMAND"
-alias mkdir='mkdir -p'
 
 # FASDER ALIASES
 alias a='fasder -a'        # any
@@ -68,6 +68,8 @@ alias s='fasder -si'       # show / search / select
 #alias sd='fasder -sid'     # interactive directory selection
 alias sf='fasder -sif'     # interactive file selection
 #alias v="f -e $EDITOR"
+# fasder tries to claim 'sd'
+unalias sd
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
@@ -119,20 +121,15 @@ decode() {
 	echo "$1" | base64 -d | xclip -selection clipboard ; xclip -selection clipboard -o ; echo
 }
 
-#t() {
-#	current=`themey`
-#	ls $COLORDIR | fzf --preview 'themey {} && panes'
-#}
-
 # theme selection using wal
 td() {
-	dir='/usr/local/lib/python3.7/dist-packages/pywal/colorschemes/dark'
-	(cd "$dir" && fd .) | fzf --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
+	dir='/usr/local/lib/python3.6/dist-packages/pywal/colorschemes/dark'
+	(cd "$dir" && fd .) | sk --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
 }
 
 tl() {
-	dir='/usr/local/lib/python3.7/dist-packages/pywal/colorschemes/light'
-	(cd "$dir" && fd .) | fzf --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
+	dir='/usr/local/lib/python3.6/dist-packages/pywal/colorschemes/light'
+	(cd "$dir" && fd .) | sk --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
 }
 
 alacritty.setup() {
@@ -142,6 +139,21 @@ alacritty.setup() {
 	sudo update-desktop-database
 }
 
+kitty.download() {
+	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin \
+	    launch=n
+}
+
+kitty.setup() {
+	# Create a symbolic link to add kitty to PATH (assuming ~/.local/bin is in
+	# your PATH)
+	ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
+	# Place the kitty.desktop file somewhere it can be found by the OS
+	cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
+	# Update the path to the kitty icon in the kitty.desktop file
+	sed -i "s/Icon\=kitty/Icon\=\/home\/$USER\/.local\/kitty.app\/share\/icons\/hicolor\/256x256\/apps\/kitty.png/g" ~/.local/share/applications/kitty.desktop
+}
+
 # Attempt at making kitty's image preview work
 #if file --mime-type {} | rg -q 'image'; then
 #	kitty +kitten icat {}
@@ -149,8 +161,6 @@ alacritty.setup() {
 #	echo {} is a binary file
 #fi
 
-
-alias panthdark="gsettings set io.elementary.terminal.settings prefer-dark-style"
 
 fzfp() {
 fzf --preview '
@@ -165,28 +175,8 @@ else
 fi'
 }
 
-kitty.update() {
-	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-}
-
 fzf.update() {
 	cd ~/.fzf && git pull && ./install
-}
-
-kitty.install() {
-# Create a symbolic link to add kitty to PATH (assuming ~/.local/bin is in
-# your PATH)
-
-sl="$USERPATH/kitty"
-if ! [ -e "$sl" ]; then 
-	kitty.update
-	ln -s -f ~/.local/kitty.app/bin/kitty "$sl"
-	# Place the kitty.desktop file somewhere it can be found by the OS
-	cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
-	# Update the path to the kitty icon in the kitty.desktop file
-	sed -i "s/Icon\=kitty/Icon\=\/home\/$USER\/.local\/kitty.app\/share\/icons\/hicolor\/256x256\/apps\/kitty.png/g" ~/.local/share/applications/kitty.desktop
-	
-fi
 }
 
 man() {
@@ -199,9 +189,3 @@ man() {
     LESS_TERMCAP_us=$'\e[1;32m' \
       man "$@"
 }
-
-# fasder tries to claim 'sd'
-#unalias sd
-#if type "sd" &> /dev/null ; then
-#	alias sed=sd
-#fi

@@ -2,33 +2,41 @@
 # vim:syntax=zsh
 # vim:filetype=zsh
 
-#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-(cat "$HOME/.cache/wal/sequences" &)
+(bat -pp "$HOME/.cache/wal/sequences" &)
+# (cat "$HOME/.cache/wal/sequences" &)
 
 typeset -U PATH
 
 eval "$(fasder --init auto)"
 
-source $HOME/.aliases.sh
-source $HOME/.keybindings.zsh
-source $HOME/.zsh_plugins.sh
-#source $HOME/.purepower
-#SILVER=(status:black:white dir:blue:black git:green:black cmdtime:magenta:black)
-#export SILVER_SHELL=$0 # bash, zsh, or fish
-#eval "$(silver init)"
-
-autoload -Uz compinit
-setopt EXTENDEDGLOB
-  for dump in $HOME/.zcompdump(#qN.m1); do
-    compinit
-    if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
-      zcompile "$dump"
-    fi
-  done
-unsetopt EXTENDEDGLOB
-compinit -C
-
-#source $HOME/.zsh-interactive-cd.plugin.zsh
-
+source <(sheldon source)
+#source $HOME/.zsh_plugins.sh
+eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# autoload -Uz compinit
+# setopt EXTENDEDGLOB
+#   for dump in $HOME/.zcompdump(#qN.m1); do
+#     compinit
+#     if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+#       zcompile "$dump"
+#     fi
+#   done
+# unsetopt EXTENDEDGLOB
+# compinit -C
+
+_zpcompinit_custom() {
+  setopt extendedglob local_options
+  autoload -Uz compinit
+  local zcd=${ZDOTDIR:-$HOME}/.zcompdump
+  local zcdc="$zcd.zwc"
+  # Compile the completion dump to increase startup speed, if dump is newer or doesn't exist,
+  # in the background as this is doesn't affect the current session
+  if [[ -f "$zcd"(#qN.m+1) ]]; then
+        compinit -i -d "$zcd"
+        { rm -f "$zcdc" && zcompile "$zcd" } &!
+  else
+        compinit -C -d "$zcd"
+        { [[ ! -f "$zcdc" || "$zcd" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "$zcd" } &!
+  fi
+}

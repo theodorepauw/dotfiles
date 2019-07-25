@@ -1,4 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/theodorepauw/.dots/fish/.config/fish/functions'
 let g:netrw_dirhist_2='/home/ted/code/rust/aoc2018/day15/src'
+let g:netrw_dirhist_3='/home/ted/books'
+let g:netrw_dirhist_4='/home/ted/.dots/bootstrap'
+let g:netrw_dirhist_5='/home/ted/.dots/shell/.cross-shell-plugins'
