@@ -4,7 +4,6 @@
 USERPATH="$HOME/.local/bin"
 EDITOR="nvim"
 
-alias ai="antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
 alias cfa="$EDITOR ~/.cross-shell-plugins/aliases.plugin.sh"
 alias cfal="$EDITOR ~/.config/alacritty/alacritty.yml"
 alias cfb="$EDITOR ~/.config/bspwm/bspwmrc"
@@ -147,7 +146,7 @@ kitty.download() {
 kitty.setup() {
 	# Create a symbolic link to add kitty to PATH (assuming ~/.local/bin is in
 	# your PATH)
-	ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
+	ln -sf ~/.local/kitty.app/bin/kitty ~/.local/bin/
 	# Place the kitty.desktop file somewhere it can be found by the OS
 	cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
 	# Update the path to the kitty icon in the kitty.desktop file
