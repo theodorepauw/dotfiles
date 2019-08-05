@@ -26,7 +26,7 @@ fpath+=~/.zfunc
 # Go Env
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/code/go
-
+export ANDROID_HOME=~/android/sdk
 path=(
   $path
   $HOME/.local/bin
