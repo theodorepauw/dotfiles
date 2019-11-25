@@ -25,8 +25,8 @@ alias clock="tty-clock -c"
 alias comptonr="killall -9 compton && compton --config ~/.config/compton.conf -b"
 
 alias edit="$EDTIOR"
-#alias fs="fc-list : family | fzf"
-alias fs="fc-list : family | sk"
+alias fs="fc-list : family | fzf"
+#alias fs="fc-list : family | sk"
 alias g.="git add ."
 
 creategitrepo(){
@@ -122,12 +122,12 @@ decode() {
 
 # theme selection using wal
 td() {
-	dir='/usr/local/lib/python3.6/dist-packages/pywal/colorschemes/dark'
+	dir=~/.local/lib/python3.6/site-packages/pywal/colorschemes/dark
 	(cd "$dir" && fd .) | sk --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
 }
 
 tl() {
-	dir='/usr/local/lib/python3.6/dist-packages/pywal/colorschemes/light'
+	dir=~/.local/lib/python3.6/site-packages/pywal/colorschemes/light
 	(cd "$dir" && fd .) | sk --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
 }
 

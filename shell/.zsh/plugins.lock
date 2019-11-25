@@ -1,43 +1,45 @@
-version = "0.4.5"
-home = "/home/ted"
-root = "/home/ted/.zsh"
-config_file = "/home/ted/.zsh/plugins.toml"
-lock_file = "/home/ted/.zsh/plugins.lock"
+version = "0.4.8"
+home = "/home/theo"
+root = "/home/theo/.zsh"
+config_file = "/home/theo/.zsh/plugins.toml"
+lock_file = "/home/theo/.zsh/plugins.lock"
+clone_dir = "/home/theo/.zsh/repositories"
+download_dir = "/home/theo/.zsh/downloads"
 
 [[plugins]]
 name = "async"
-directory = "/home/ted/.zsh/repositories/github.com/mafredri/zsh-async"
-filenames = ["/home/ted/.zsh/repositories/github.com/mafredri/zsh-async/async.zsh"]
+source_dir = "/home/theo/.zsh/repositories/github.com/mafredri/zsh-async"
+filenames = ["/home/theo/.zsh/repositories/github.com/mafredri/zsh-async/async.zsh"]
 apply = ["function"]
 
 [[plugins]]
 name = "aliases"
-directory = "/home/ted/.cross-shell-plugins"
-filenames = ["/home/ted/.cross-shell-plugins/aliases.plugin.sh"]
+source_dir = "/home/theo/.cross-shell-plugins"
+filenames = ["/home/theo/.cross-shell-plugins/aliases.plugin.sh"]
 apply = ["PATH", "source"]
 
 [[plugins]]
 name = "zsh-specific"
-directory = "/home/ted/.zsh/plugins"
-filenames = ["/home/ted/.zsh/plugins/keybindings-plugin.zsh"]
+source_dir = "/home/theo/.zsh/plugins"
+filenames = ["/home/theo/.zsh/plugins/keybindings-plugin.zsh"]
 apply = ["PATH", "source"]
 
 [[plugins]]
 name = "zsh-autosuggestions"
-directory = "/home/ted/.zsh/repositories/github.com/zsh-users/zsh-autosuggestions"
-filenames = ["/home/ted/.zsh/repositories/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh"]
+source_dir = "/home/theo/.zsh/repositories/github.com/zsh-users/zsh-autosuggestions"
+filenames = ["/home/theo/.zsh/repositories/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh"]
 apply = ["PATH", "source"]
 
 [[plugins]]
 name = "zsh-completions"
-directory = "/home/ted/.zsh/repositories/github.com/zsh-users/zsh-completions"
-filenames = ["/home/ted/.zsh/repositories/github.com/zsh-users/zsh-completions/zsh-completions.plugin.zsh"]
+source_dir = "/home/theo/.zsh/repositories/github.com/zsh-users/zsh-completions"
+filenames = ["/home/theo/.zsh/repositories/github.com/zsh-users/zsh-completions/zsh-completions.plugin.zsh"]
 apply = ["PATH", "source"]
 
 [[plugins]]
 name = "fast-syntax-highlighting"
-directory = "/home/ted/.zsh/repositories/github.com/zdharma/fast-syntax-highlighting"
-filenames = ["/home/ted/.zsh/repositories/github.com/zdharma/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"]
+source_dir = "/home/theo/.zsh/repositories/github.com/zdharma/fast-syntax-highlighting"
+filenames = ["/home/theo/.zsh/repositories/github.com/zdharma/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"]
 apply = ["PATH", "source"]
 [templates.function]
 value = "ln -sf \"{{ filename }}\" \"{{ root }}/functions/{{ name }}\""

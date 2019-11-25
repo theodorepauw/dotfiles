@@ -1,12 +1,12 @@
 # vim:syntax=zsh
 # vim:filetype=zsh
 
-export DOTFILES=$HOME/.dots
+export DOTFILES=$HOME/dotfiles
 
 unsetopt BEEP
 
 # Editors
-export EDITOR='nvim'
+export EDITOR='io.elementary.code'
 export VISUAL='nvim'
 export PAGER='less' 
 
@@ -25,7 +25,7 @@ fpath+=~/.zfunc
 
 # Go Env
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/code/go
+export GOPATH=$HOME/Code/Go
 export ANDROID_HOME=~/android/sdk
 path=(
   $path

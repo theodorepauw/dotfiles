@@ -7,7 +7,6 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 " GUI enhancments
-Plug 'w0rp/ale' " Asynchronous Linting Engine
 Plug 'itchyny/lightline.vim'
 Plug 'dylanaraps/wal.vim'
 Plug 'lilydjwg/colorizer'
@@ -20,46 +19,8 @@ Plug 'mcchrish/nnn.vim'
 Plug 'airblade/vim-rooter' " Changes Vim working directory to project root
 "Plug 'jremmen/vim-ripgrep' " Use RipGrep in Vim
 
-" Semantic language support
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp' " pynvim is required for nvim-yarp to work!
-Plug 'racer-rust/vim-racer'
-Plug 'ollykel/v-vim'
-
-" Completion plugins
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-"rust
-Plug 'ncm2/ncm2-racer'
-"python
-Plug 'ncm2/ncm2-jedi'
-"go
-Plug 'ncm2/ncm2-go'
-
 " VIM improvements
-"Plug 'tpope/vim-surround' " for better parentheses, etc.
 Plug 'tpope/vim-commentary'
-
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-
-" Syntactic language support
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-Plug 'rust-lang/rust.vim'
-""Plug 'cespare/vim-toml'
-" Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -84,57 +45,6 @@ colorscheme wal
 if executable('rg')
 	set grepprg=rg\ --vimgrep
 endif
-
-" Linter
-" only lint on save
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_enter = 0
-let g:ale_virtualtext_cursor = 1
-let g:ale_rust_rls_config = {
-	\ 'rust': {
-		\ 'all_targets': 1,
-		\ 'build_on_save': 1,
-		\ 'clippy_preference': 'on'
-	\ }
-	\ }
-let g:ale_rust_rls_toolchain = ''
-let g:ale_linters = {'rust': ['rls']}
-highlight link ALEWarningSign Todo
-highlight link ALEErrorSign WarningMsg
-highlight link ALEVirtualTextWarning Todo
-highlight link ALEVirtualTextInfo Todo
-highlight link ALEVirtualTextError WarningMsg
-highlight ALEError guibg=None
-highlight ALEWarning guibg=None
-let g:ale_sign_error = "✖"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_info = "i"
-let g:ale_sign_hint = "➤"
-
-nnoremap <silent> K :ALEHover<CR>
-nnoremap <silent> gd :ALEGoToDefinition<CR>
-
-" racer + rust
-" https://github.com/rust-lang/rust.vim/issues/192
-let g:rustfmt_command = "rustfmt +nightly"
-let g:rustfmt_autosave = 1
-let g:rustfmt_emit_files = 1
-let g:rustfmt_fail_silently = 0
-let g:rust_clip_command = 'xclip -selection clipboard'
-"let g:racer_cmd = "/usr/bin/racer"
-"let g:racer_experimental_completer = 1
-let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
-
-" Completion
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-" tab to select
-" and don't hijack my enter key
-inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
-""inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
-inoremap <expr> <cr> ((pumvisible())?("\<C-y>"):("\<cr>"))
 
 " =============================================================================
 " # Editor settings
@@ -330,16 +240,6 @@ imap <F1> <Esc>
 " add 180ms delay before the omni wrapper:
 "  'on_complete': ['ncm2#on_complete#delay', 180,
 "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-au User Ncm2Plugin call ncm2#register_source({
-        \ 'name' : 'css',
-        \ 'priority': 9,
-        \ 'subscope_enable': 1,
-        \ 'scope': ['css','scss'],
-        \ 'mark': 'css',
-        \ 'word_pattern': '[\w\-]+',
-        \ 'complete_pattern': ':\s*',
-        \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-        \ })
 
 " trying out a work-around for better parentheses
 inoremap " ""<left>
