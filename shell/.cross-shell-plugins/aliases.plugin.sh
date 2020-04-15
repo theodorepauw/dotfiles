@@ -68,7 +68,7 @@ alias s='fasder -si'       # show / search / select
 alias sf='fasder -sif'     # interactive file selection
 #alias v="f -e $EDITOR"
 # fasder tries to claim 'sd'
-unalias sd
+#unalias sd
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
@@ -122,12 +122,12 @@ decode() {
 
 # theme selection using wal
 td() {
-	dir=~/.local/lib/python3.6/site-packages/pywal/colorschemes/dark
+	dir=/usr/local/lib/python3.7/dist-packages/pywal/colorschemes/dark
 	(cd "$dir" && fd .) | sk --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
 }
 
 tl() {
-	dir=~/.local/lib/python3.6/site-packages/pywal/colorschemes/light
+	dir=/usr/local/lib/python3.7/dist-packages/pywal/colorschemes/light
 	(cd "$dir" && fd .) | sk --preview 'wal -q --theme '$dir/{}' && panes' > /dev/null
 }
 

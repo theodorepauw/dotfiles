@@ -2,12 +2,12 @@
 # vim:syntax=zsh
 # vim:filetype=zsh
 
-(bat -pp "$HOME/.cache/wal/sequences" &)
+#(bat -pp "$HOME/.cache/wal/sequences" &)
 # (cat "$HOME/.cache/wal/sequences" &)
 
 typeset -U PATH
 
-eval "$(fasder --init auto)"
+#eval "$(fasder --init auto)"
 
 source <(sheldon source)
 #source $HOME/.zsh_plugins.sh
