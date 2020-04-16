@@ -7,6 +7,7 @@
 	 ```
 		mkdir -p ~/.local/bin
 		export PATH="$HOME/.local/bin:$PATH"
+	 ```
  - [ ] `scripts/stowsh fstab -t /etc/`
  - [ ] [NeoVim](https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage)
  - [ ] Pywal: `sudo pip3 install pywal`
