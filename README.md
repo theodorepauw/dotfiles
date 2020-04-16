@@ -2,16 +2,16 @@
 
  - [ ] [Install Chrome](https://www.google.com/chrome/dev/thank-you.html?statcb=0&installdataindex=empty&defaultbrowser=0#)
  - [ ] `sudo apt install software-properties-common`
- - [ ] `sudo apt install zsh eddy fzf`
+ - [ ] `sudo apt install zsh eddy fzf python3-pip ripgrep xclip`
  - [ ] User applications directory:
 	 ```
 		mkdir -p ~/.local/bin
 		export PATH="$HOME/.local/bin:$PATH"```
  - [ ] `scripts/stowsh fstab -t /etc/`
  - [ ] [NeoVim](https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage)
- - [ ] Pywal: `sudo apt install python3-pip && sudo pip3 install pywal`
+ - [ ] Pywal: `sudo pip3 install pywal`
  - [ ] [Rust](https://rustup.rs/):
-	 - [ ]  `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+	 - [ ] `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 	 - [ ] `cargo install fd-find`
 	 - [ ] `cargo install cargo-update`
 	 - [ ] `cargo install sd`
@@ -26,6 +26,5 @@
 	 ```
 	  curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
 	  | bash -s -- --repo "rossmacarthur/sheldon" --to /usr/local/bin```
-- [ ] `sudo apt install ripgrep`
 - [ ] [Piper](https://flathub.org/apps/details/org.freedesktop.Piper) for Logitech G303:
 
