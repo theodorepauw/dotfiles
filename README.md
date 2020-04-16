@@ -1,6 +1,6 @@
-# Dotfiles
+# Getting Started
 
- - [ ] [Chrome](https://www.google.com/chrome/dev/thank-you.html?statcb=0&installdataindex=empty&defaultbrowser=0#)
+ - [ ] [Install Chrome](https://www.google.com/chrome/dev/thank-you.html?statcb=0&installdataindex=empty&defaultbrowser=0#)
  - [ ] `sudo apt install software-properties-common`
  - [ ] `sudo apt install zsh eddy fzf`
  - [ ] User applications directory:
