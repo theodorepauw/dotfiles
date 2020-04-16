@@ -3,6 +3,12 @@ if has('vim_starting')
 	set nocompatible               " Be iMproved
 endif
 
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Load Plugins with junegunn's Vim-Plug
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -11,17 +17,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'dylanaraps/wal.vim'
 Plug 'lilydjwg/colorizer'
 Plug 'andymass/vim-matchup'
-
-" Fuzzy Finder + Integration
-Plug '~/.fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'mcchrish/nnn.vim'
-Plug 'airblade/vim-rooter' " Changes Vim working directory to project root
-"Plug 'jremmen/vim-ripgrep' " Use RipGrep in Vim
-
+""
+""" Fuzzy Finder + Integration
+""Plug '~/.fzf'
+""Plug 'junegunn/fzf.vim'
+""
 " VIM improvements
 Plug 'tpope/vim-commentary'
-
+""
 call plug#end()
 
 if has('nvim')
@@ -300,14 +303,3 @@ autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
 if has('nvim')
 	runtime! plugin/python_setup.vim
 endif
-
-" Disable default mappings
-let g:nnn#set_default_mappings = 0
-
-" Then set your own
-nnoremap <silent> <leader>nn :NnnPicker<CR>
-
-
-" Or override
-" Start nnn in the current file's directory
-nnoremap <leader>n :NnnPicker '%:p:h'<CR>

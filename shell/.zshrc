@@ -3,7 +3,7 @@
 # vim:filetype=zsh
 
 #(bat -pp "$HOME/.cache/wal/sequences" &)
-# (cat "$HOME/.cache/wal/sequences" &)
+(cat "$HOME/.cache/wal/sequences" &)
 
 typeset -U PATH
 
