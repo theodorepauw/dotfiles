@@ -2,7 +2,7 @@
 
  - [ ] [Install Chrome](https://www.google.com/chrome/dev/thank-you.html?statcb=0&installdataindex=empty&defaultbrowser=0#)
  - [ ] `sudo apt install software-properties-common`
- - [ ] `sudo apt install zsh eddy fzf python3-pip ripgrep xclip`
+ - [ ] `sudo apt install zsh eddy fzf python3-pip xclip`
  - [ ] User applications directory:
 	 ```
 		mkdir -p ~/.local/bin
@@ -29,4 +29,5 @@
 	  | bash -s -- --repo "rossmacarthur/sheldon" --to /usr/local/bin```
 - [ ] [VS Code](https://code.visualstudio.com/docs/?dv=linux64_deb)
 - [ ] [Piper](https://flathub.org/apps/details/org.freedesktop.Piper) for Logitech G303:
+- [ ] [Bat](https://github.com/sharkdp/bat/releases/download/v0.13.0/bat_0.13.0_amd64.deb) & [ripgrep](https://github.com/BurntSushi/ripgrep/releases/download/12.0.1/ripgrep_12.0.1_amd64.deb)
 
