@@ -26,5 +26,6 @@
 	 ```
 	  curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
 	  | bash -s -- --repo "rossmacarthur/sheldon" --to /usr/local/bin```
+- [ ] [VS Code](https://code.visualstudio.com/docs/?dv=linux64_deb)
 - [ ] [Piper](https://flathub.org/apps/details/org.freedesktop.Piper) for Logitech G303:
 
